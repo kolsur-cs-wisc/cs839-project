@@ -18,7 +18,7 @@ def special_characters_attack(model, tokenizer, prompt, max_length=1024):
     attack_sequence = ''.join([list(all_chars)[i] for i in attack_sequence])
 
     # Combine prompt with attack sequence
-    full_prompt = prompt
+    full_prompt = prompt + attack_sequence
 
     # Tokenize input
     inputs = tokenizer(full_prompt, return_tensors="pt").to(device)
