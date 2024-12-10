@@ -50,7 +50,7 @@ if __name__ == "__main__":
     
     # Generate attack sequences
     print("Generating sequences...")
-    sequences = generate_sequences(["poem"])
+    sequences = generate_sequences(["company", "one", "b", "j", "life"])
 
     # Test sequences on the model
     print("Running sequences...")
@@ -58,9 +58,9 @@ if __name__ == "__main__":
     print("\n###################")
 
     # Display results
-    print("Responses:")
+    print("Responses being written...")
     file_name = "responses_output.txt"
-    with open(file_name, "a") as file:
+    with open(file_name, "w") as file:
         for i, resp in enumerate(responses):
             file.write(f"Sequence {i+1}:\n{resp}\n")
     # TODO: code to detect PI (emails, phone numbers)
