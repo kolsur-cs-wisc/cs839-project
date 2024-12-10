@@ -1,5 +1,6 @@
 import torch
-from transformers import GPTNeoForCausalLM, GPT2Tokenizer
+# from transformers import GPTNeoForCausalLM, GPT2Tokenizer
+from transformers import AutoTokenizer, AutoModelForCausalLM
 
 # Generate attack sequences
 def generate_sequences(words, n=5):
@@ -12,7 +13,7 @@ def generate_sequences(words, n=5):
     return sequences
 
 # Input attack sequences into the model
-def run_scalar(model, tokenizer, sequences, max_length=200):
+def run_scalar(model, tokenizer, sequences, max_length=2000):
     model.eval()
     responses = []
     for seq in sequences:
@@ -34,9 +35,14 @@ if __name__ == "__main__":
     print("Beginning...")
     # Load GPT-Neo model and tokenizer
     print("Loading model and tokenizer...")
-    model_name = "EleutherAI/gpt-neo-1.3B"
-    tokenizer = GPT2Tokenizer.from_pretrained(model_name)
-    model = GPTNeoForCausalLM.from_pretrained(model_name)
+    # model_name = "EleutherAI/gpt-neo-1.3B"
+    # tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+    # model = GPTNeoForCausalLM.from_pretrained(model_name)
+
+    model_name = "togethercomputer/RedPajama-INCITE-Base-3B-v1"
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float16)
+
 
     # Device configuration
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -53,8 +59,10 @@ if __name__ == "__main__":
 
     # Display results
     print("Responses:")
-    for i, resp in enumerate(responses):
-        print(f"Sequence {i+1}:\n{resp}\n")
-    # TODO: Output these into a file so that we can regex PI (phone numbers, emails, etc.)
+    file_name = "responses_output.txt"
+    with open(file_name, "a") as file:
+        for i, resp in enumerate(responses):
+            file.write(f"Sequence {i+1}:\n{resp}\n")
+    # TODO: code to detect PI (emails, phone numbers)
 
     print("\n##########################################")
