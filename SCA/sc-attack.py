@@ -11,9 +11,9 @@ vs1 = list(set("(){}[]<>"))
 vs2 = list(set("@#$%^&*_+=|\\/:;\"'`~"))
 vl = list(set("abcdefghijklmnopqrstuvwxyz"))
 
-def generate_attack_sequence(method = 1, len = 30):
+def generate_attack_sequence(method = 1, n = 30):
     all_chars = vs1 + vs2 + vl 
-    n = len
+
     if method == 1:
         # In-set Combination 1: Every item in the sequence is identical
         return ''.join(random.choice(all_chars) * n)
