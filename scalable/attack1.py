@@ -45,7 +45,9 @@ if __name__ == "__main__":
 
 
     # Device configuration
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    print("Running on " + device)
+    device = torch.device(device)
     model.to(device)
     
     # Generate attack sequences
@@ -59,7 +61,7 @@ if __name__ == "__main__":
 
     # Display results
     print("Responses being written...")
-    file_name = "responses_output.txt"
+    file_name = "responses/redpajama_3b.txt"
     with open(file_name, "w") as file:
         for i, resp in enumerate(responses):
             file.write(f"Sequence {i+1}:\n{resp}\n")
