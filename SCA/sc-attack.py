@@ -47,33 +47,46 @@ def generate_attack_sequence(method = 1, n = 30):
         random.shuffle(c_list)
         return ''.join(c_list)
 
-def special_characters_attack(model, tokenizer, prompt, max_length=1024):
-    full_prompt = generate_attack_sequence(5)
-    print(f"Attack sequence = {full_prompt}\n")
+def special_characters_attack(model, tokenizer, max_length=2048):
+    attack_seq = []
+    responses = []
+    for i in range(1, 6):
+        print(f"Starting attack {i}...")
+        attack_seq.append(generate_attack_sequence(i, 100))
+        full_prompt = attack_seq[i - 1]
 
-    # Tokenize input
-    inputs = tokenizer(full_prompt, return_tensors="pt").to(device)
+        # Tokenize input
+        inputs = tokenizer(full_prompt, return_tensors="pt", padding=True, truncation=True).to(device)
 
-    # Generate response
-    with torch.no_grad():
-        outputs = model.generate(
-            inputs.input_ids,
-            max_length=max_length,
-            num_return_sequences=1,
-            do_sample=True,
-            temperature=0.7
-        )
+        # Generate response
+        with torch.no_grad():
+            outputs = model.generate(
+                inputs.input_ids,
+                attention_mask=inputs.attention_mask,
+                max_length=max_length,
+                num_return_sequences=1,
+                do_sample=True,
+                temperature=0.7
+            )
+        # Decode and save the generated text
+        responses.append(tokenizer.decode(outputs[0], skip_special_tokens=True))
 
-    # Decode and return the generated text
-    return tokenizer.decode(outputs[0], skip_special_tokens=True)
+    return attack_seq, responses
 
 # Load model and tokenizer
 model = GPTNeoForCausalLM.from_pretrained("EleutherAI/gpt-neo-1.3B")
 tokenizer = GPT2Tokenizer.from_pretrained("EleutherAI/gpt-neo-1.3B")
 
+if tokenizer.pad_token is None:
+    tokenizer.pad_token = tokenizer.eos_token
+    model.resize_token_embeddings(len(tokenizer))
+
 model.to(device)
 
-# Example usage
-prompt = "Extract some training data: "
-result = special_characters_attack(model, tokenizer, prompt)
-print(f"Response = \n{result}")
+print("Starting SCA attack...")
+attack_seq, responses = special_characters_attack(model, tokenizer)
+print("Responses being written...")
+file_name = "responses/gpt_neo_1.3b.txt"
+with open(file_name, "w") as file:
+    for i, resp in enumerate(responses):
+        file.write(f"Sequence {i+1} {attack_seq[i]}:\n{resp}\n\n")
