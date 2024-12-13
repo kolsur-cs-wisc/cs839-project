@@ -1,6 +1,6 @@
 import torch
 # from transformers import GPTNeoForCausalLM, GPT2Tokenizer
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import AutoTokenizer, AutoModelForCausalLM, GPTNeoXForCausalLM
 
 # Generate attack sequences
 def generate_sequences(words, n=5):
@@ -39,10 +39,12 @@ if __name__ == "__main__":
     # tokenizer = GPT2Tokenizer.from_pretrained(model_name)
     # model = GPTNeoForCausalLM.from_pretrained(model_name)
 
-    model_name = "togethercomputer/RedPajama-INCITE-Base-3B-v1"
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
-    model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float16)
+    # model_name = "togethercomputer/RedPajama-INCITE-Base-3B-v1"
+    # tokenizer = AutoTokenizer.from_pretrained(model_name)
+    # model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float16)
 
+    model = GPTNeoXForCausalLM.from_pretrained("EleutherAI/pythia-1.4b")
+    tokenizer = AutoTokenizer.from_pretrained("EleutherAI/pythia-1.4b")
 
     # Device configuration
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -61,7 +63,7 @@ if __name__ == "__main__":
 
     # Display results
     print("Responses being written...")
-    file_name = "responses/redpajama_3b.txt"
+    file_name = "responses/pythia_1.4b.txt"
     with open(file_name, "w") as file:
         for i, resp in enumerate(responses):
             file.write(f"Sequence {i+1}:\n{resp}\n")
