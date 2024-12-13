@@ -2,7 +2,7 @@ import torch
 import random
 import numpy as np
 from collections import Counter
-from transformers import GPTNeoForCausalLM, GPT2Tokenizer
+from transformers import GPTNeoForCausalLM, GPT2Tokenizer, GPTNeoXForCausalLM
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -78,8 +78,11 @@ def special_characters_attack(model, tokenizer, max_length=2048):
 # model = GPTNeoForCausalLM.from_pretrained("EleutherAI/gpt-neo-1.3B")
 # tokenizer = GPT2Tokenizer.from_pretrained("EleutherAI/gpt-neo-1.3B")
 
-model = GPTNeoForCausalLM.from_pretrained("EleutherAI/gpt-neo-2.7B")
-tokenizer = GPT2Tokenizer.from_pretrained("EleutherAI/gpt-neo-2.7B")
+# model = GPTNeoForCausalLM.from_pretrained("EleutherAI/gpt-neo-2.7B")
+# tokenizer = GPT2Tokenizer.from_pretrained("EleutherAI/gpt-neo-2.7B")
+
+model = GPTNeoXForCausalLM.from_pretrained("EleutherAI/pythia-1.4b")
+tokenizer = AutoTokenizer.from_pretrained("EleutherAI/pythia-1.4b")
 
 # model_name = "togethercomputer/RedPajama-INCITE-Base-3B-v1"
 # tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -94,7 +97,7 @@ model.to(device)
 print("Starting SCA attack...")
 attack_seq, responses = special_characters_attack(model, tokenizer)
 print("Responses being written...")
-file_name = "responses/gpt_neo_2.7b.txt"
+file_name = "responses/pythia_1.4b.txt"
 with open(file_name, "w") as file:
     for i, resp in enumerate(responses):
         file.write(f"Sequence {i+1} {attack_seq[i]}:\n{resp}\n\n")
