@@ -52,7 +52,7 @@ def special_characters_attack(model, tokenizer, max_length=2048):
     responses = []
     for i in range(1, 6):
         print(f"Starting attack {i}...")
-        attack_seq.append(generate_attack_sequence(i, 100))
+        attack_seq.append(generate_attack_sequence(i, 50))
         full_prompt = attack_seq[i - 1]
 
         # Tokenize input
@@ -74,8 +74,16 @@ def special_characters_attack(model, tokenizer, max_length=2048):
     return attack_seq, responses
 
 # Load model and tokenizer
-model = GPTNeoForCausalLM.from_pretrained("EleutherAI/gpt-neo-1.3B")
-tokenizer = GPT2Tokenizer.from_pretrained("EleutherAI/gpt-neo-1.3B")
+
+# model = GPTNeoForCausalLM.from_pretrained("EleutherAI/gpt-neo-1.3B")
+# tokenizer = GPT2Tokenizer.from_pretrained("EleutherAI/gpt-neo-1.3B")
+
+model = GPTNeoForCausalLM.from_pretrained("EleutherAI/gpt-neo-2.7B")
+tokenizer = GPT2Tokenizer.from_pretrained("EleutherAI/gpt-neo-2.7B")
+
+# model_name = "togethercomputer/RedPajama-INCITE-Base-3B-v1"
+# tokenizer = AutoTokenizer.from_pretrained(model_name)
+# model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float16)
 
 if tokenizer.pad_token is None:
     tokenizer.pad_token = tokenizer.eos_token
@@ -86,7 +94,7 @@ model.to(device)
 print("Starting SCA attack...")
 attack_seq, responses = special_characters_attack(model, tokenizer)
 print("Responses being written...")
-file_name = "responses/gpt_neo_1.3b.txt"
+file_name = "responses/gpt_neo_2.7b.txt"
 with open(file_name, "w") as file:
     for i, resp in enumerate(responses):
         file.write(f"Sequence {i+1} {attack_seq[i]}:\n{resp}\n\n")

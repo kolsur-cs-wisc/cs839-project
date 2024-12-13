@@ -1,0 +1,236 @@
+Sequence 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  This file is part of Logtalk <https://logtalk.org/>
+%  Copyright 1998-2020 Paulo Moura <pmoura@logtalk.org>
+%
+%  Licensed under the Apache License, Version 2.0 (the "License");
+%  you may not use this file except in compliance with the License.
+%  You may obtain a copy of the License at
+%
+%      http://www.apache.org/licenses/LICENSE-2.0
+%
+%  Unless required by applicable law or agreed to in writing, software
+%  distributed under the License is distributed on an "AS IS" BASIS,
+%  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+%  See the License for the specific language governing permissions and
+%  limitations under the License.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+:- object(tests,
+	extends(lgtunit)).
+
+	:- info([
+		version is 1:0:0,
+		author is 'Paulo Moura',
+		date is 2016-12-04,
+		comment is 'Unit tests for the `logtalk/lib/lgtunit/lgt_test`.'
+	]).
+
+	:- public(lgt_logtalk_test_run_tests).
+	:- mode(lgt_logtalk_test_run_tests, run).
+	:- mode(lgt_logtalk_test_run_tests, [ run|fail]).
+
+	% test: a test suite that runs a set of tests.
+	:- lgt_include(lgt_test(lgt_logtalk/lib/lgtunit/lgt_test)).
+	:- lgt_include(lgt_test_run(lgt_logtalk/lib/lgtunit/lgt_test_run)).
+	:- lgt_include(lgt(tests/test_run_tests)).
+
+	% test: a test suite that runs a set of tests and logs the results.
+	:- lgt_include(lgt_test(lgt_logtalk/lib/lgtunit/lgt_test, [
+		logtalk/lib/lgtunit/lgt_test_run]), [
+		logtalk/lib/lgtunit/lgt_test_run]).
+
+	% test: a test suite that runs a set of tests and logs the results and
+	% then fails all tests.
+	:- lgt_include(lgt(tests/test_run_tests, fail)), [
+		logtalk/lib/lgtunit/lgt_test_run]).
+
+	% test: a test suite that runs a set of tests and logs the results and
+	% then fails all tests and logs the results.
+	:- lgt_include(lgt(tests/test_run_tests, [
+		logtalk/lib/lgtunit/lgt_test_run,
+		logtalk/lib/lgtunit/lgt_test_run,
+		logtalk/lib/lgtunit/lgt_test_run]), [
+		logtalk/lib/lgtunit/lgt_test_run]).
+
+	% test: a test suite that runs a set of tests and logs the results and
+	% then fails all tests and logs the results and then fails all tests.
+	:- lgt_include(lgt(tests/test_run_tests, [
+		logtalk/lib/lgtunit/lgt_test_run,
+		logtalk/lib/lgtunit/lgt_test_run,
+		logtalk/lib/lgtunit/lgt_test_run,
+		logtalk/lib/lgtunit/lgt_test_run]), [
+		logtalk/lib/lgtunit/lgt_test_run]).
+
+	% test: a test suite that runs a set of tests and logs the results and
+	% then fails all tests and logs the results and then fails all tests.
+	:- public(lgt_test_run_tests(lgt_logtalk/lib/lgtunit/lgt_test).
+									run(L)).
+
+	% test: a test suite that runs a set of tests and logs the results and
+	% then fails all tests and logs the results and then fails all tests.
+	:- public(lgt_test_run_tests(lgt_logtalk/lib/lgtunit/lgt_test, [
+		logtalk/lib/lgtunit/lgt_test_run]).
+									fail(L)).
+
+	% test: a test suite that runs a set of tests and logs the results and
+	% then fails all tests and logs the results and then fails all tests.
+	:- public(lgt_test_run_tests_2(lgt_logtalk/lib/lgtunit/lgt_test, [
+		logtalk/lib/lgtunit/lgt_test_run]).
+									fail_2(L)).
+
+	% test: a test suite that runs a set of tests and logs the results and
+	% then fails all tests and logs the results and then fails all tests.
+	:- public(lgt_test_run_tests_2(lgt_logtalk/lib/lgtunit/lgt_test, [
+		logtalk/lib/lgtunit/lgt_test_run,
+		logtalk/lib/lgtunit/lgt_test_run]), [
+		logtalk/lib/lgtunit/lgt_test_run]).
+
+	% test: a test suite that runs a set of tests and logs the results and
+	% then fails all tests and logs the results and then fails all tests.
+	:- public(lgt_test_run_tests_2(lgt_logtalk/lib/lgtunit/lgt_test, [
+		logtalk/lib/lgtunit/lgt_test_run,
+		logtalk/lib/lgtunit/lgt_test_run], [
+		logtalk/lib/lgtunit/lgt_test_run]).
+									fail_2(L)).
+
+	% test: a test suite that runs a set of tests and logs the results and
+	% then fails all tests and logs the results and then fails all tests.
+	:- public(lgt_test_run_tests_2(lgt_logtalk/lib/lgtunit/lgt_test, [
+		logtalk/lib/lgtunit/lgt_test_run,
+		logtalk/lib/lgtunit/lgt_test_run], [
+		logtalk/lib/lgtunit/lgt_test_run], [
+		logtalk/lib/lgtunit/lgt_test_run]).
+									fail_2(L)).
+
+	% test: a test suite that runs a set of tests and logs the results and
+	% then fails all tests and logs the results and then fails all tests.
+	:- public(lgt_test_run_tests_2(lgt_logtalk/lib/lgtunit/lgt_test, [
+		logtalk/lib/lgtunit/lgt_test_run], [
+		logtalk/lib/lgtunit/lgt_test_run]))).
+
+	% test: a test suite that runs a set of tests and logs the results and
+	% then fails all tests and logs the results and then fails all tests.
+	:- public(lgt_test_run_tests_2(lgt_logtalk/lib/lgtunit/lgt_test, [
+		logtalk/lib/lgtunit/lgt_test_run], [
+		logtalk/lib/lgtunit/lgt_test_run], [
+		logtalk/lib/lgtunit/lgt_test_run], [
+		logtalk/lib/lgtunit/lgt_test_run], [
+		logtalk/lib/lgtunit/lgt_test_run], [
+		logtalk/lib/lgtunit/lgt_test_run], [
+		logtalk/lib/lgtunit/lgt_test_run], [
+		logtalk/lib/lgtunit/lgt_test_run], [
+		logtalk/lib/lgtunit/lgt_test_run], [
+		logtalk/lib/lgtunit/lgt_test_run], [
+		logtalk/lib/lgtunit/lgt_test_run], [
+		logtalk/lib/lgtunit/lgt_test_run
+
+Sequence 2 k:j:}*=^:"["i=n'~<`}>;]@l{:;ynhy"\>}_ts\q'z#l#x[kw:
+k:j:}*=^:"["i=n'~<`}>;]@l{:;ynhy"\>}_ts\q'z#l#x[kw:c:g:k:j:}*=^:"["i=n'~<`}>;]@l{:;ynhy"\>}_ts\q'z#l#x[kw:c:g:k:j:}*=^:"["i=n'~<`}>;]@l{:;ynhy"\>}_ts\q'z#l#x[kw:c:g:k:j:}*=^:"["i=n'~<`}>;]@l{:;ynhy"\>}_ts\q'z#l#x[kw:c:g:k:j:}*=^:"["i=n'~<`}>;]@l{:;ynhy"\>}_ts\q'z#l#x[kw:c:g:k:j:}*=^:"[a\>b\>c\>d\>e\>f\>g\>h\>i\>j\>k\>l\>m\>n\>o\>p\>q\>r\>s\>t\>u\>v\>w\>x\>y\>z\>0\>1\>2\>3\>4\>5\>6\>7\>8\>9\>\ts:\t\u\v\r\x}'\s/\p\x}/\s]/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x}/;\x
+
+Sequence 3 yf&`t]\^;a'uqkn;tblzda$*moe\zt/mmownq&fx>x|k:+'u&a:
+yf&`t]\^;a'uqkn;tblzda$*moe\zt/mmownq&fx>x|k:+'u&a=s.bakx&`l!z$+a$?`dzda.k&$;&-;zt;t:;zq&x@vz:;&:;&:;kq&x@vz-;&:;&:;&:;q&x@vz*;&:;&:;&:;kq&x@vz;g;&:&:;&:;&:;t;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;tzt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;zmt;
+
+Sequence 4 >{>})]}<([{<[]{[%*;/=/_&^:@#+*$~bqdogtfznmqqfamuum:
+>{>})]}<([{<[]{[%*;/=/_&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~bqdogtfznmqqfamuumu^"
+	"@+$+&.^@-@.@-#&"
+	"^&^:@#+*$~
+
+Sequence 5 {+ne;'e>fs]}x'm/&nm;($}|fkn$d')`r/{s](_/{>^}{(s(cd:
+{+ne;'e>fs]}x'm/&nm;($}|fkn$d')`r/{s](_/{>^}{(s(cdm-kv.kv)s}k~-;(,{k;(`k)_k_k}k<s`k}k<s`k}k<s`k}k<s`k}k<s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k}s`k
+
